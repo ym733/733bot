@@ -35,7 +35,7 @@ PRIVATE COMMANDS (only bot owner can use):
 *** 
 ## running the bot yourself
 
-*Following a couple steps the bot can be ran on any host machine*
+*Following a couple steps the bot can be ran on any host machine* PS. you need to have ruby installed to run the bot
 
 ***
 1. Download repo as zip file then unzip it
