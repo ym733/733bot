@@ -35,7 +35,7 @@ PRIVATE COMMANDS (only bot owner can use):
 *** 
 ## running the bot yourself
 
-*Following a couple steps the bot can be ran on any host machine,* PS. you need to have ruby installed to run the bot
+*Following a couple steps the bot can be ran on any host machine,* PS. you need to have ruby installed in step 8 to run the bot
 
 ***
 1. Download repo as zip file then unzip it
@@ -45,5 +45,5 @@ PRIVATE COMMANDS (only bot owner can use):
 5. "@commands" matches the commands typed in chat, so add as many as needed
 6. "@responses" is aligned with "@commands", so the "@commands[n]" will have the response of "@responses[n]", so add the responses respectively aligned with the commands
 7. Now that all changes have been made we need to run the bot, open the file with the terminal (or if you are using an IDE run "main.rb")
-8. after opening the file with the terminal run the following line `ruby main.rb`
-9. at this point the bot should be running in chat nad working fine
+8. After opening the file with the terminal run the following line `ruby main.rb`
+9. At this point the bot should be running in chat nad working fine
