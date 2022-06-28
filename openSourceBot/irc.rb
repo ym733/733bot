@@ -29,6 +29,7 @@ class IRC
     @logger.info('bot connected...')
 
       while @running  do
+        begin
         ready = IO.select([@socket])
         ready[0].each do |s|
           line = s.gets
@@ -44,6 +45,10 @@ class IRC
           if message
             RunCommand(channel.strip, user.strip, message.strip)
           end
+        rescue
+          puts "error has occured exiting Program"
+          @running = false
+        end
 
           #@logger.info("<-- #{line}")
         end
