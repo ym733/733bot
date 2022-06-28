@@ -1,4 +1,5 @@
 #Program starts here
+system "cls"
 puts "Program running"
 
 load 'irc.rb'
