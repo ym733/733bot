@@ -22,6 +22,7 @@ PRIVATE COMMANDS (only bot owner can use):
 |??join | joins a channel and adds it to the system thus the bot keeps joining the channel everytime it restarts |
 |??tempjoin | temporarily joins a channel only until the bot restarts |
 |??restart | reboots the bot |
+|??pyramid | makes a pyramid in chat (hopefully this command will be public soon) | 
 
 ***
 ## info
