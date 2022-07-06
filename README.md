@@ -9,7 +9,7 @@ PUBLIC COMMANDS:
 |??suggest | suggest command returns the suggestion id |
 |??nasa | API, returns today's nasa picture |
 |??islive | API, returns if the streamer is live and if they are live returns: game, uptime and number of viewers |
-|??checksuggest | (followed by the suggestion id), returns the status of your suggestion |
+|??checksuggest/??suggeststat | (followed by the suggestion id), returns the status of your suggestion |
 |??bot | returns a short description about the bot |
 |??help/??commands | brings you here |
 
