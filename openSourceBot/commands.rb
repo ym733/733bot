@@ -7,7 +7,7 @@ def commandCheck(message)
   @commands[0] = "!hello"
 
   while $num < @commands.size
-    if @commands[$num].include? message
+    if @commands[$num] == message.split[0]
       $flag = true
       break
     end
