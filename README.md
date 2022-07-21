@@ -42,7 +42,7 @@ PRIVATE COMMANDS (only bot owner can use):
 
 ***
 1. Download repo as zip file then unzip it
-2. We will be working with 'openSource-IRC', so open folder with a text editor so we can make changes to individual files, we wont be making any changes to "main.rb" or "irc.rb"
+2. We will be working with 'openSource-IRC', so open the folder with a text editor so we can make changes to individual files, we wont be making any changes to "main.rb" or "irc.rb"
 3. Open "oauth.rb" and edit the following: the oauth token, username, and channel
 4. Now the bot can run but it doesnt have commands so open "commands.rb" and you will find 2 arrays "@commands" and "@responses" 
 5. "@commands" matches the commands typed in chat, so add as many as needed
