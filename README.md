@@ -12,6 +12,8 @@ PUBLIC COMMANDS:
 |??checksuggest/??suggeststat | (followed by the suggestion id), returns the status of your suggestion |
 |??bot | returns a short description about the bot |
 |??help/??commands | brings you here |
+|??fill | fills the message with the input you give it |
+|??cat/??randcat | API, return a random picture of a cat |
 
 PRIVATE COMMANDS (only bot owner can use):
 
