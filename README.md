@@ -15,6 +15,15 @@ PUBLIC COMMANDS:
 |??fill | fills the message with the input you give it |
 |??cat/??randcat | API, return a random picture of a cat |
 
+FISHING COMMANDS:
+
+|command|description|
+|-------|-----------|
+|??fishcatch/??catchfish/??fc/??cf | catch a fish to add to your points, has a 1 hour interval between each catch |
+|??newuser | if you are a new user, creates a new file for you to start adding points |
+|??rename | if you changed your twitch username you can rename the original file made and gain back all your previous points |
+|??fishpoints/??points | returns the amounts of points you currently have |
+
 PRIVATE COMMANDS (only bot owner can use):
 
 |command|description|
