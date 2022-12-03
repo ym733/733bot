@@ -38,6 +38,8 @@ PRIVATE COMMANDS (only bot owner can use):
 ***
 ## info
 
+*This is a Twitch chat bot client used by **733bot**, written in ruby*
+
 *This bot is not going to be active 24/7, so adding this bot to your chat would be near useless*
 
 *If you have any suggestion for the bot, type ?suggest with your suggestion, and if the bot is not active contact the owner 'ym733' via twitch whispers*
@@ -47,7 +49,7 @@ PRIVATE COMMANDS (only bot owner can use):
 *** 
 ## running the bot yourself
 
-*Following a couple steps the bot can be ran on any host machine,* note- you need to have `ruby` installed in step 8 to run the bot
+*Following a couple steps the bot can be ran on any host machine,* note- you need to have `[ruby](https://www.ruby-lang.org/)` installed in step 8 to run the bot
 
 ***
 1. Download repo as zip file then unzip it
