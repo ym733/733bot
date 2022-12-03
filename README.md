@@ -49,7 +49,7 @@ PRIVATE COMMANDS (only bot owner can use):
 *** 
 ## running the bot yourself
 
-*Following a couple steps the bot can be ran on any host machine,* note- you need to have `[ruby](https://www.ruby-lang.org/)` installed in step 8 to run the bot
+*Following a couple steps the bot can be ran on any host machine,* note- you need to have [`ruby`](https://www.ruby-lang.org/) installed in step 8 to run the bot
 
 ***
 1. Download repo as zip file then unzip it
