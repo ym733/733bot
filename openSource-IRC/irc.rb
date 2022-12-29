@@ -30,12 +30,12 @@ class IRC
 
       while @running  do
         begin
-        ready = IO.select([@socket])
-        ready[0].each do |s|
+          #recieve message from IRC
+          ready = IO.select([@socket])
+          ready[0].each do |s|
           line = s.gets
 
-          #puts line
-
+          #message parser
           match = line.match(/:(.+)!(.+) PRIVMSG #(.+) :(.+)$/)
 
           user = match && match[1]
@@ -46,33 +46,36 @@ class IRC
             RunCommand(channel.strip, user.strip, message.strip)
           end
         rescue
-          puts "error has occured exiting Program"
+          puts "error has occurred exiting Program"
           @running = false
         end
-
-          #@logger.info("<-- #{line}")
         end
       end
 
   end
 
+  #for sending password to IRC
   def send_pass(command)
     @socket.puts(command)
   end
 
+  #for sending a command to IRC
   def send_command(command)
     puts "--> #{command}"
     @socket.puts("#{command}\r\n", 0)
 
   end
 
+  #for sending a chat message to IRC
   def send_privmsg(channel, text)
     send_command "PRIVMSG ##{channel} :#{text}"
   end
 
+  #method for decoding a message
   def RunCommand(channel, user, message)
     puts "##{channel} #{user}: #{message}"
 
+    #if the prefix exists in message then decode the command sent
     if message[0] != '!'
       return nil
     else
