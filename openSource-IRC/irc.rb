@@ -5,8 +5,7 @@ load 'commands.rb'
 
 class IRC
 
-  def initialize(nick, channel, oauth, logger = nil)
-    @logger = logger || Logger.new(STDOUT)
+  def initialize(nick, channel, oauth)
     @running = false
     @socket = nil
 
@@ -16,7 +15,6 @@ class IRC
   end
 
   def connect
-    @logger.info('initializing bot...')
     # Connect to the IRC server
     @socket = TCPSocket.new('irc.chat.twitch.tv', 6667)
     @running = true
@@ -26,32 +24,36 @@ class IRC
     send_command "JOIN ##{@channel}"
     send_privmsg @channel, "bot running"
 
-    @logger.info('bot connected...')
+    while @running  do
+      begin
+        #recieve message from IRC
+        ready = IO.select([@socket])
+        ready[0].each do |s|
+        line = s.gets
 
-      while @running  do
-        begin
-          #recieve message from IRC
-          ready = IO.select([@socket])
-          ready[0].each do |s|
-          line = s.gets
-
-          #message parser
-          match = line.match(/:(.+)!(.+) PRIVMSG #(.+) :(.+)$/)
-
-          user = match && match[1]
-          message = match && match[4]
-          channel = match && match[3]
-
-          if message
-            RunCommand(channel.strip, user.strip, message.strip)
-          end
-        rescue
-          puts "error has occurred exiting Program"
-          @running = false
+        # If the message is a ping, send a pong back to the server
+        if line.start_with? "PING :tmi.twitch.tv"
+          puts line
+          send_command "PONG :tmi.twitch.tv"
+          next
         end
+
+        #message parser
+        match = line.match(/:(.+)!(.+) PRIVMSG #(.+) :(.+)$/)
+
+        user = match && match[1]
+        message = match && match[4]
+        channel = match && match[3]
+
+        if message
+          RunCommand(channel.strip, user.strip, message.strip)
         end
+      rescue
+        puts "error has occurred exiting Program"
+        @running = false
       end
-
+      end
+    end
   end
 
   #for sending password to IRC
@@ -87,5 +89,4 @@ class IRC
       end
     end
   end
-
 end
