@@ -17,7 +17,6 @@ PUBLIC COMMANDS:
 | ??bot                              | returns a short description about the bot                                                             |
 | ??help/??commands                  | brings you here                                                                                       |
 | [??fill](./commandFill.rb)         | fills the message with the input you give it                                                          |
-| [??cat/??randcat](./commandCat.rb) | API, return a random picture of a cat                                                                 |
 
 ---
 

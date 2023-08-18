@@ -1,4 +1,3 @@
-
 def commandCheck(message)
   $flag = false
   $num = 0
