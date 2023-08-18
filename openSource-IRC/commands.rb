@@ -1,26 +1,27 @@
 def commandCheck(message)
-  $flag = false
-  $num = 0
-
+  
   #to add more commands add here
-  @commands = Array.new
-  @commands[0] = "!hello"
+  @commands = [
+    "!hello"
+  ]
 
-  while $num < @commands.size
-    if @commands[$num] == message.split[0]
-      $flag = true
-      break
+  @commands.each do |elem|
+    if elem.split(" ").include? message.downcase
+      return true
     end
-    $num+=1
   end
+  return false
 end
 
 def response (user, message)
 
   #add the response here every command must have a corresponding message
-  @responses = Array.new
-  @responses[0] = "hello @#{user} 👋"
+  @responses = [
+    "hello @#{user} 👋"
+  ]
 
-  return @responses[$num]
+  #this is an anonymous function that returns the index of the command we are executing
+  commandIndex = (-> (arr, sub) { arr.index { |str| str.include?(sub) } }).call(@commands, message.split[0].downcase)
 
+  return @responses[commandIndex]
 end

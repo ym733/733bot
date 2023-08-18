@@ -22,7 +22,7 @@ class IRC
     send_pass "PASS #{@token}"
     send_command "NICK #{@nick}"
     send_command "JOIN ##{@channel}"
-    send_privmsg @channel, "bot running"
+    send_privmsg "bot running"
 
     while @running  do
       begin
@@ -43,11 +43,15 @@ class IRC
 
         user = match && match[1]
         message = match && match[4]
+
+        #channel if needed
         channel = match && match[3]
 
+        #we check if the message sent matches our regex if so RunCommand is run
         if message
-          RunCommand(channel.strip, user.strip, message.strip)
+          RunCommand(user.strip, message.strip)
         end
+
       rescue
         puts "error has occurred exiting Program"
         @running = false
@@ -69,23 +73,20 @@ class IRC
   end
 
   #for sending a chat message to IRC
-  def send_privmsg(channel, text)
-    send_command "PRIVMSG ##{channel} :#{text}"
+  def send_privmsg(text)
+    send_command "PRIVMSG ##{@channel} :#{text}"
   end
 
   #method for decoding a message
-  def RunCommand(channel, user, message)
-    puts "##{channel} #{user}: #{message}"
+  def RunCommand(user, message)
+    puts "##{@channel} #{user}: #{message}"
 
-    #if the prefix exists in message then decode the command sent
-    if message[0] != '!'
-      return nil
-    else
-      commandCheck message.downcase.split[0]
-      if $flag
+    #the message begins with the prefix then decode the command sent
+    if message.start_with? '!'
+      if commandCheck message.downcase.split[0]
         msg = response(user, message)
 
-        send_privmsg channel, msg
+        send_privmsg msg
       end
     end
   end
