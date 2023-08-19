@@ -39,7 +39,7 @@ class IRC
         end
 
         #message parser
-        match = line.match(/:(.+)!(.+) PRIVMSG #(.+) :(.+)$/)
+        match = line.match(/:(.+)!(.+) PRIVMSG #([^ ]+) :(.+)$/)
 
         user = match && match[1]
         message = match && match[4]
