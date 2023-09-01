@@ -1,12 +1,12 @@
 ## info
 
-_This is a Twitch chat web-socket client I made and is written in ruby, used by **733bot**, which is a bot I host with this client locally_
+_This is a Twitch chat web-socket client I made and is written in ruby, used by **733bot**, which is a bot I host with this client locally._
 
-_733bot is not active 24/7_
+_733bot is not active 24/7._
 
-_I have made many changes to this open source code throughout_
+_I have made many changes to this open source code throughout._
 
-_This is not the original code I use to host 733bot but a very close replica_
+_This is not the original code I use to host 733bot but a very close replica._
 
 ---
 

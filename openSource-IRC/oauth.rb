@@ -6,3 +6,15 @@ $username = "username"
 
 #type the channel you want the bot to join here
 $channel = "channel"
+
+=begin
+#you would use this when using a database 
+#type the DataBase parameters if needed
+$db_params = {
+    host: 'localhost',
+    port: 5432,
+    dbname: 'dbname',
+    user: 'dbuser',
+    password: 'dbpassword'
+}
+=end
