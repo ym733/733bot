@@ -1,22 +1,22 @@
 # 733bot Commands
 
-_not all commmds are open-source, reasons can range from: command being too technical or too simple_
+_not all commmds are open-source for various reasons_
 
 ---
 
 PUBLIC COMMANDS:
 
-| command                           | description                                                                                           |
-| --------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| [??say](./commandSay.rb)          | Says the text that follows the command                                                                |
-| [??ping/??pong](./commandPing.rb) | shows how long the bot has been running for and Pings twitch and returns the latency                  |
-| ??suggest                         | suggest command returns the suggestion id                                                             |
-| [??nasa](./commandNasa.rb)        | API, returns today's nasa picture                                                                     |
-| [??islive](./commandIsLive.rb)    | API, returns if the streamer is live and if they are live returns: game, uptime and number of viewers |
-| ??checksuggest/??suggeststat      | (followed by the suggestion id), returns the status of your suggestion                                |
-| ??bot                             | returns a short description about the bot                                                             |
-| ??help/??commands                 | brings you here                                                                                       |
-| [??fill](./commandFill.rb)        | fills the message with the input you give it                                                          |
+| command                                                  | description                                                                                           |
+| -------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| [??say](./commandSay.rb)                                 | Says the text that follows the command                                                                |
+| [??ping/??pong](./commandPing.rb)                        | shows how long the bot has been running for and Pings twitch and returns the latency                  |
+| [??suggest](./commandSuggest.rb)                         | suggest command returns the suggestion id                                                             |
+| [??nasa](./commandNasa.rb)                               | API, returns today's nasa picture                                                                     |
+| [??islive](./commandIsLive.rb)                           | API, returns if the streamer is live and if they are live returns: game, uptime and number of viewers |
+| [??checksuggest/??suggeststat](./commandSuggestCheck.rb) | (followed by the suggestion id), returns the status of your suggestion                                |
+| ??bot                                                    | returns a short description about the bot                                                             |
+| ??help/??commands                                        | brings you here                                                                                       |
+| [??fill](./commandFill.rb)                               | fills the message with the input you give it                                                          |
 
 ---
 
@@ -36,8 +36,9 @@ PRIVATE COMMANDS (only bot owner can use):
 | command                            | description                                                                                            |
 | ---------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | [??quit](./commandQuit.rb)         | shuts down the bot                                                                                     |
-| ??ban                              | bans a user from using a certain command or the entire                                                 |
+| [??ban](./commandBan.rb)           | bans a user from using a certain command or the entire                                                 |
 | ??join                             | joins a channel and adds it to the system thus the bot keeps joining the channel everytime it restarts |
 | [??tempjoin](./commandTempJoin.rb) | temporarily joins a channel only until the bot restarts                                                |
 | ??restart                          | reboots the bot                                                                                        |
 | [??pyramid](./commandPyramid.rb)   | makes a pyramid in chat (hopefully this command will be public soon)                                   |
+| [??eval/??debug](./commandEval.rb) | debugs the given input as ruby codes and retuns the result                                             |

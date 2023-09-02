@@ -4,5 +4,5 @@ def commandSay (user, message)
       return "@#{user}, give something for the bot to say"
     end
       
-    return message.split[1.. message.size].join(" ")
+    return message.split[1..-1].join(" ")
   end

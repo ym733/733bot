@@ -3,6 +3,6 @@ def commandfill (user, message)
         return "@#{user}, give something for the bot to fill"
     end
     
-    string = message.split[1.. message.size].join(" ")
+    string = message.split[1..-1].join(" ")
     return "#{string} " * (500 / (string.size+1)).to_i
 end

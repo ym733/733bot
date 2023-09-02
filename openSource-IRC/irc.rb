@@ -68,7 +68,7 @@ class IRC
   #for sending a command to IRC
   def send_command(command)
     puts "--> #{command}"
-    @socket.puts("#{command}\r\n", 0)
+    @socket.puts("#{command}\r\n")
 
   end
 
