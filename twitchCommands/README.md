@@ -2,6 +2,8 @@
 
 _not all commmds are open-source for various reasons_
 
+_contributions to individual commands are welcome_
+
 ---
 
 PUBLIC COMMANDS:
