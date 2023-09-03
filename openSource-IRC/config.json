@@ -1,0 +1,13 @@
+{
+
+    "oauth" : "oauth:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "username" : "username",
+    "channel" : "channel",
+    "db_params" : {
+        "host": "",
+        "port": 1234,
+        "dbname": "",
+        "user": "",
+        "password": ""
+    }
+}

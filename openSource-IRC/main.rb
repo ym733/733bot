@@ -3,8 +3,8 @@ system "cls"
 puts "Program running"
 
 load 'irc.rb'
-load 'oauth.rb'
+$data = JSON.parse(File.read('./config.json'))
 
-irc = IRC.new($username, $channel, $oauth)
+irc = IRC.new($data["username"], $data["channel"], $data["oauth"])
 irc.connect
 

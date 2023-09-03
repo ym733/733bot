@@ -29,33 +29,32 @@ class IRC
         #recieve message from IRC
         ready = IO.select([@socket])
         ready[0].each do |s|
-        line = s.gets
+          line = s.gets
 
-        # If the message is a ping, send a pong back to the server
-        if line.start_with? "PING :tmi.twitch.tv"
-          puts line
-          send_command "PONG :tmi.twitch.tv"
-          next
+          # If the message is a ping, send a pong back to the server
+          if line.start_with? "PING :tmi.twitch.tv"
+            puts line
+            send_command "PONG :tmi.twitch.tv"
+            next
+          end
+
+          #message parser
+          match = line.match(/:(.+)!(.+) PRIVMSG #([^ ]+) :(.+)$/)
+
+          user = match && match[1]
+          message = match && match[4]
+
+          #channel if needed
+          channel = match && match[3]
+
+          #we check if the message sent matches our regex if so RunCommand is run
+          if message
+            RunCommand(user.strip, message.strip)
+          end
         end
-
-        #message parser
-        match = line.match(/:(.+)!(.+) PRIVMSG #([^ ]+) :(.+)$/)
-
-        user = match && match[1]
-        message = match && match[4]
-
-        #channel if needed
-        channel = match && match[3]
-
-        #we check if the message sent matches our regex if so RunCommand is run
-        if message
-          RunCommand(user.strip, message.strip)
-        end
-
       rescue
         puts "error has occurred exiting Program"
         @running = false
-      end
       end
     end
   end
