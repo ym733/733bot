@@ -39,7 +39,7 @@ PRIVATE COMMANDS (only bot owner can use):
 | ---------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | [??quit](./commandQuit.rb)         | shuts down the bot                                                                                     |
 | [??ban](./commandBan.rb)           | bans a user from using a certain command or the entire                                                 |
-| ??join                             | joins a channel and adds it to the system thus the bot keeps joining the channel everytime it restarts |
+| [??join](./commandPermaJoin.rb)    | joins a channel and adds it to the system thus the bot keeps joining the channel everytime it restarts |
 | [??tempjoin](./commandTempJoin.rb) | temporarily joins a channel only until the bot restarts                                                |
 | ??restart                          | reboots the bot                                                                                        |
 | [??pyramid](./commandPyramid.rb)   | makes a pyramid in chat (hopefully this command will be public soon)                                   |
