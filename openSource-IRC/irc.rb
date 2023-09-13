@@ -1,6 +1,7 @@
 require "socket"
 require 'logger'
 load 'commands.rb'
+load 'parser.rb'
 
 
 class IRC
@@ -31,29 +32,34 @@ class IRC
         ready[0].each do |s|
           line = s.gets
 
-          # If the message is a ping, send a pong back to the server
-          if line.start_with? "PING :tmi.twitch.tv"
+          #message parser
+          parsedLine = parse_message line
+
+          if parsedLine == nil
             puts line
-            send_command "PONG :tmi.twitch.tv"
             next
           end
 
-          #message parser
-          match = line.match(/:(.+)!(.+) PRIVMSG #([^ ]+) :(.+)$/)
+          case parsedLine["command"]["command"]
+          when 'PING'
+            # If the message is a ping, send a pong back to the server
+            puts line
+            send_command "PONG :tmi.twitch.tv"
+            next
+          when 'PRIVMSG'
+            user = parsedLine["source"]["nick"]
+            message = parsedLine["parameters"]
 
-          user = match && match[1]
-          message = match && match[4]
+            #channel if needed
+            channel = parsedLine["command"]["channel"][1..-1]
 
-          #channel if needed
-          channel = match && match[3]
-
-          #we check if the message sent matches our regex if so RunCommand is run
-          if message
-            RunCommand(user.strip, message.strip)
+            runCommand(user.strip, message.strip)
           end
+
         end
-      rescue
+      rescue StandardError => e
         puts "error has occurred exiting Program"
+        puts e.full_message
         @running = false
       end
     end
@@ -77,7 +83,7 @@ class IRC
   end
 
   #method for decoding a message
-  def RunCommand(user, message)
+  def runCommand(user, message)
     puts "##{@channel} #{user}: #{message}"
 
     #the message begins with the prefix then decode the command sent
