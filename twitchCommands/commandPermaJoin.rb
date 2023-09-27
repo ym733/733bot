@@ -1,4 +1,3 @@
-
 def commandPermaJoin (user, message, method, db_params)
     if message.split[1] == nil
         return "@#{user}, error, no input!"

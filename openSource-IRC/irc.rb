@@ -87,12 +87,14 @@ class IRC
   def runCommand(user, message)
     puts "##{@channel} #{user}: #{message}"
 
-    #the message begins with the prefix then decode the command sent
-    if message.start_with? '!'
-      if commandCheck message.downcase.split[0]
-        msg = response(user, message)
+    prefix = '!' #change prefix here
 
-        send_privmsg msg
+    #the message begins with the prefix then decode the command sent
+    if message.start_with? prefix
+      command = message.split[0][(prefix.length)..].downcase
+      
+      if commandCheck command
+        send_privmsg response(user, message, prefix)
       end
     end
   end
