@@ -19,6 +19,8 @@ PUBLIC COMMANDS:
 | ??bot                                                    | returns a short description about the bot                                                             |
 | ??help/??commands                                        | brings you here                                                                                       |
 | [??fill](./commandFill.rb)                               | fills the message with the input you give it                                                          |
+| [??followage](./commandFollowage.rb)                     | checks the followage of a given user or a given channel                                               |
+| [??subage](./commandSubage.rb)                           | checks the subage of a given user or a given a channel                                                |
 
 ---
 

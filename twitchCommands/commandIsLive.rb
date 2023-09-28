@@ -3,19 +3,18 @@ require "net/http"
 require 'json'
 require 'time'
 
-def timeSince(time_ran)
+def format_time_diff(time_diff)
+  hours = ((time_diff % (24 * 60 * 60)) / (60 * 60)).to_i
+  minutes = ((time_diff % (60 * 60)) / 60).to_i
+  seconds = (time_diff % 60).to_i
 
-  string = ""
+  formatted_time_diff = []
 
-  hours = (time_ran / 3600) % 60
-  minutes = (time_ran / 60 ) % 60
-  seconds  = time_ran % 60
+  formatted_time_diff << "#{hours} hour#{hours > 1 ? 's' : ''}" if hours > 0
+  formatted_time_diff << "#{minutes} minute#{minutes > 1 ? 's' : ''}" if minutes > 0
+  formatted_time_diff << "#{seconds} second#{seconds > 1 ? 's' : ''}" if seconds > 0
 
-  string = (hours.to_i != 0)? string + "hour: #{hours.to_i}, " : string + ""
-  string = (minutes.to_i != 0)? string + "minutes: #{minutes.to_i}, ": string + ""
-  string = (minutes.to_i != 0)? string + "seconds: #{seconds.to_i}, " : string + ""
-
-  string.strip
+  formatted_time_diff.join(', ')
 end
 
 def getObj(channel)
@@ -33,7 +32,7 @@ def getObj(channel)
 end
 
 def commandIslive (orgChannel, user, parameters)
-  if parameters == nil
+  if parameters.nil?
     channel = orgChannel
   else
     channel = parameters[0]
@@ -56,7 +55,7 @@ def commandIslive (orgChannel, user, parameters)
     obj = obj[0]
     game = obj["game_name"]
     views = obj["viewer_count"]
-    uptime = timeSince(Time.now - Time.parse(obj["started_at"]))
+    uptime = format_time_diff(Time.now - Time.parse(obj["started_at"]))
 
     return "@#{user}, #{channel} has been streaming #{game} for #{uptime} to #{views} viewers "
   end
