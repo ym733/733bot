@@ -4,8 +4,6 @@ _733Bot's fish commands require usage of DataBase._
 
 _In this instance I've used PostGreSQL._
 
-_This might not be the best implementation for some of these commands, so contributions are welcome._
-
 ---
 
 | command                                                    | description                                                                                                      |
