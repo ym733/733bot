@@ -46,3 +46,4 @@ PRIVATE COMMANDS (only bot owner can use):
 | ??restart                          | reboots the bot                                                                                        |
 | [??pyramid](./commandPyramid.rb)   | makes a pyramid in chat (hopefully this command will be public soon)                                   |
 | [??eval/??debug](./commandEval.rb) | debugs the given input as ruby codes and retuns the result                                             |
+| ??leave/??part                     | leaves a given channel or the current channel if no channel is given                                   |
