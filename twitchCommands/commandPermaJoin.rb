@@ -1,16 +1,29 @@
-def commandPermaJoin (user, message, method, db_params)
-    if message.split[1] == nil
+$command = {
+    "name" => "join",
+    "isPrivate?" => true,
+    "alias" => "permajoin joinperma",
+    "method" => -> (params) {
+      user = params[:user]
+      parameters = params[:parameters]
+      method = params[:irc].method(:join)
+  
+      if parameters.nil?
         return "@#{user}, error, no input!"
-    elsif message.split[1][0] == '#'
-        return "@#{user}, Try again without the '#'"
-    end
-
-    channel_to_join = message.split[1].downcase
-
-    conn = PG.connect(db_params)
-    query = "CALL \"joinChannel\"('#{channel_to_join}');"
-    conn.exec(query)
-
-    method.call channel_to_join
-    return nil
-end
+      end
+  
+      if parameters[0][0] == '#'
+        channel_to_join = parameters[0][1..-1].downcase
+      else
+        channel_to_join = parameters[0].downcase
+      end
+  
+      dal = DAL.new
+      dal.join_channel(channel_to_join)
+  
+      dal.close
+  
+      method.call channel_to_join
+      return nil
+    }
+  }
+  

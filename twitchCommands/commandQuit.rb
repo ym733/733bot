@@ -1,5 +1,11 @@
-def quit(user, message)
-    @running = false
+$command = {
+  "name" => "quit",
+  "isPrivate?" => true,
+  "alias" => "quit",
+  "method" => -> (params) {
+    method = params[:irc].method(:flip_running)
+
+    method.call
     return "quitting..."
-  end
-  
+  }
+}

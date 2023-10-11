@@ -1,8 +1,17 @@
-def commandSay (user, message)
-    
-    if message.split[1] == nil
-      return "@#{user}, give something for the bot to say"
+$command = {
+  "name" => "say",
+  "isPrivate?" => false,
+  "alias" => "say",
+  "lastUsed" => "Say",
+  "coolDown" => 5,
+  "method" => -> (params) {
+    user = params[:user]
+    parameters = params[:parameters]
+
+    if parameters.nil?
+      return "@#{user}, error, no input!"
     end
-      
-    return message.split[1..-1].join(" ")
-  end
+
+    return parameters.join(" ")
+  }
+}

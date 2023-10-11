@@ -1,10 +1,24 @@
-def commandTempJoin (user, message)
-    if message.split[1] == nil
-        return "@#{user}, error, no intput!"
-    elsif message.split[1][0] == '#'
-        return "@#{user}, Try again without the '#'"
-    end
-
-    send_command "JOIN ##{message.split[1].downcase}"
-    return "running in #{message.split[1].downcase} :D"
-end
+$command = {
+    "name" => "join",
+    "isPrivate?" => true,
+    "alias" => "jointemp tempjoin",
+    "method" => -> (params) {
+      user = params[:user]
+      parameters = params[:parameters]
+      method = params[:irc].method(:join)
+  
+      if parameters.nil?
+            return "@#{user}, error, no input!"
+        end
+  
+        if parameters[0][0] == '#'
+            channel_to_join = parameters[0][1..-1].downcase
+        else
+            channel_to_join = parameters[0].downcase
+        end
+  
+        method.call channel_to_join
+        return nil
+    }
+  }
+  

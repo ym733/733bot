@@ -1,19 +1,23 @@
-require 'httparty'
+$command = {
+  "name" => "nasa",
+  "isPrivate?" => false,
+  "alias" => "nasa",
+  "lastUsed" => "Nasa",
+  "coolDown" => 5,
+  "method" => -> (params) {
+    begin
+      api_url = "https://api.nasa.gov/planetary/apod?api_key=#{$data["nasa_key"]}"
+      response = Net::HTTP.get(URI(api_url))
 
-def commandNasa (user, message)
-  begin
-    api_url = "https://api.nasa.gov/planetary/apod?api_key=#{$data["nasa_key"]}"
-    # you can get a NASA API key and explore other APIs here: https://api.nasa.gov/
-    response = Net::HTTP.get(URI(api_url))
+      obj = JSON.parse(response)
+    rescue
+      return "Error! couldn't fetch API"
+    end
 
-    arr = JSON.parse(response)
-  rescue
-    return "Error! couldn't fetch API"
-  end
-    
-  artist = arr["copyright"]
-  url = arr["hdurl"]
-  title = arr["title"]
-  
-  return "@#{user}, Today's picture by #{artist}, Titled: #{title}  #{url}"
-end
+    artist = (obj["copyright"].include? "\n") ? "unknown" : obj["copyright"]
+    url = obj["url"]
+    title = obj["title"]
+
+    return "@#{params[:user]}, Today's picture by #{artist}, Titled: #{title}  #{url}"
+  }
+}
