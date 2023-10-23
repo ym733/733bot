@@ -3,11 +3,11 @@ $command = {
   "isPrivate?" => true,
   "alias" => "ban",
   "method" => -> (params) {
-    user = params[:user]
     parameters = params[:parameters]
+    commands = params[:irc].commands
 
     if parameters.nil?
-      return "@#{user}, error, no input!"
+      return "error, no input!"
     end
 
     ban_user = parameters[0].downcase
@@ -15,19 +15,27 @@ $command = {
 
     dal = DAL.new
 
+    cmds = []
+    commands.each { |command|
+      unless cmds.include? command["name"].downcase
+        cmds.append command["name"].downcase
+      end
+    }
+    cmds.delete('bot')
+
     case ban_command
-    when "ping", "say", "suggest", "nasa", "islive", "fill", "fish", 'pyramid', 'followage', 'subage'
+    when *cmds
       dal.ban(ban_user, ban_command)
-      dal.close
-      return "@#{user}, #{ban_user} is now banned from using #{ban_command}"
+      return_msg = "#{ban_user} is now banned from using #{ban_command}"
     when nil
       dal.delete_bans(ban_user)
       dal.ban(ban_user, 'bot')
-      dal.close
-      return "@#{user}, #{ban_user} is now banned from using the bot entirely"
+      return_msg = "#{ban_user} is now banned from using the bot entirely"
     else
-      dal.close
-      return "@#{user}, error: couldn't find command, usage: ??ban {user} {command}"
+      return_msg = "error: couldn't find command, usage: ban {user} {command}"
     end
+
+    dal.close
+    return return_msg
   }
 }

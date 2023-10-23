@@ -24,6 +24,8 @@ PUBLIC COMMANDS:
 | [??pyramid](./commandPyramid.rb)                         | makes a pyramid in chat (only mods can use)                                |
 | [??followage](./commandFollowage.rb)                     | API, checks the followage of a given user or a given channel               |
 | [??subage](./commandSubage.rb)                           | API, checks the subage of a given user or a given a channel                |
+| [??cat/??randcat](./commandCat.rb)                       | API, returns a random image of a cat                                       |
+| [??dog/??randdog](./commandDog.rb)                       | API, returns a random image of a dog                                       |
 
 ---
 
