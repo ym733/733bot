@@ -35,7 +35,6 @@ PUBLIC COMMANDS:
 | ----------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | [??fishcatch/??catchfish/??fc/??cf](./FishCommands/commandFishCatch.rb) | catch a fish to add to your points, has a 1 hour interval between each catch |
 | [??newuser](./FishCommands/commandNewUser.rb)                           | if you are a new user, creates a new file for you to start adding points     |
-| [??rename](./FishCommands/commandRename.rb)                             | if you changed your twitch username you can reclaim all your previous points |
 | [??fishpoints/??points](./FishCommands/commandFishPoints.rb)            | returns the amounts of points you currently have                             |
 
 ---

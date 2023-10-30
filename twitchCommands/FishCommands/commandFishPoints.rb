@@ -5,17 +5,17 @@ $command = {
   "lastUsed" => "FishPoints",
   "coolDown" => 15,
   "method" => -> (params) {
-    user = params[:user]
+    user_id = params[:tags]["user-id"]
+    db = params[:irc].db
 
-    dal = DAL.new
-    rows = dal.get_fisher_info(user)
+    rows = db.get_fisher_info(user_id)
 
     if rows.ntuples == 0
-      return "@#{user}, your username isn't in the database, if you are new please type ??newuser"
+      return "your twitch id isn't in the database, if you are new please use newuser"
     end
 
     data = rows[0]
 
-    return "@#{user}, you have #{data["fish_point"]} points"
+    return "you have #{data["fish_point"]} points"
   }
 }

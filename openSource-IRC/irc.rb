@@ -1,5 +1,4 @@
 require "socket"
-require 'logger'
 
 load 'commands.rb'
 load 'parser.rb'
