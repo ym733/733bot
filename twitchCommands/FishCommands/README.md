@@ -8,7 +8,7 @@ _Fishing uses the twitch id not the twitch username._
 
 ---
 
-| command                                                    | description                                                                  |
+| Command                                                    | Description                                                                  |
 | ---------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | [??fishcatch/??catchfish/??fc/??cf](./commandFishCatch.rb) | catch a fish to add to your points, has a 1 hour interval between each catch |
 | [??newuser](./commandNewUser.rb)                           | if you are a new user, creates a new file for you to start adding points     |

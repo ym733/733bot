@@ -10,7 +10,7 @@ _some tools used here are not yet open-source such as IRC methods and DAL method
 
 PUBLIC COMMANDS:
 
-| command                                                  | description                                                                |
+| Command                                                  | Description                                                                |
 | -------------------------------------------------------- | -------------------------------------------------------------------------- |
 | [??say](./commandSay.rb)                                 | Says the input you give                                                    |
 | [??ping/??pong](./commandPing.rb)                        | shows how long the bot has been running for and returns the twitch latency |
@@ -31,7 +31,7 @@ PUBLIC COMMANDS:
 
 [FISHING COMMANDS:](./FishCommands/)
 
-| command                                                                 | description                                                                  |
+| Command                                                                 | Description                                                                  |
 | ----------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | [??fishcatch/??catchfish/??fc/??cf](./FishCommands/commandFishCatch.rb) | catch a fish to add to your points, has a 1 hour interval between each catch |
 | [??newuser](./FishCommands/commandNewUser.rb)                           | if you are a new user, creates a new file for you to start adding points     |
@@ -39,9 +39,21 @@ PUBLIC COMMANDS:
 
 ---
 
+[TEXT EDIT COMMANDS:](./TextEdit/)
+
+| Command                                                     | Description                                      |
+| ----------------------------------------------------------- | ------------------------------------------------ |
+| [??fill](./TextEditCommands/commandFill.rb)                 | fills the message with the input you give it     |
+| [??reverse](./TextEditCommands/commandReverse.rb)           | reverses the input you give it                   |
+| [??shuffle](./TextEditCommands/commandShuffle.rb)           | shuffles the input you give it                   |
+| [??small/??smol/??tiny](./TextEditCommands/commandSmall.rb) | turns the input you give into tiny characters    |
+| [??bold](./TextEditCommands/commandBold.rb)                 | turns the input you give it into bold characters |
+
+---
+
 PRIVATE COMMANDS (only bot owner can use):
 
-| command                                            | description                                                |
+| Command                                            | Description                                                |
 | -------------------------------------------------- | ---------------------------------------------------------- |
 | [??quit](./commandQuit.rb)                         | shuts down the bot                                         |
 | [??ban](./commandBan.rb)                           | bans a user from using a certain command or the entire bot |
