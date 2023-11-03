@@ -1,13 +1,14 @@
 $command = {
   "name" => "nasa",
   "isPrivate?" => false,
+  "chainable" => false,
   "alias" => "nasa",
   "lastUsed" => "Nasa",
   "coolDown" => 5,
   "method" => -> (params) {
     begin
       api_url = "https://api.nasa.gov/planetary/apod?api_key=#{$data["nasa_key"]}"
-      response = Net::HTTP.get(URI(api_url))
+      response = HTTPS.get api_url
 
       obj = JSON.parse(response)
     rescue
@@ -18,6 +19,6 @@ $command = {
     url = obj["url"]
     title = obj["title"]
 
-    return "@#{params[:user]}, Today's picture by #{artist}, Titled: #{title}  #{url}"
+    return "Today's picture by #{artist}, Titled: #{title}  #{url}"
   }
 }

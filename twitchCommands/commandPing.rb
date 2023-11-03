@@ -1,14 +1,14 @@
 $command = {
   "name" => "ping",
   "isPrivate?" => false,
+  "chainable" => false,
   "alias" => "ping pong",
   "lastUsed" => "Ping",
   "coolDown" => 15,
   "method" => -> (params) {
     def ping_server(host)
-      url = URI.parse(host)
       start_time = Time.now
-      response = Net::HTTP.get(url)
+      response = HTTPS.get host
       end_time = Time.now - start_time
 
       if response==""
@@ -34,6 +34,6 @@ $command = {
       formatted_time_diff.join(', ')
     end
 
-    return "@#{params[:user]}, PONG! Time running: #{format_time_diff(Time.now - $time_started)}" + " twitch latency: #{ping_server "https://www.twitch.tv"}ms"
+    return "PONG! Time running: #{format_time_diff(Time.now - params[:irc].time_started)}" + " twitch latency: #{ping_server "https://www.twitch.tv"}ms"
   }
 }

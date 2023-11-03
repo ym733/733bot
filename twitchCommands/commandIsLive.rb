@@ -1,6 +1,7 @@
 $command = {
   "name" => "islive",
   "isPrivate?" => false,
+  "chainable" => false,
   "alias" => "islive uptime live",
   "lastUsed" => "Live",
   "coolDown" => 15,
@@ -20,24 +21,24 @@ $command = {
     end
 
     def get_object(channel)
-      url = URI("https://api.twitch.tv/helix/streams?user_login=#{channel}")
+      url = "https://api.twitch.tv/helix/streams?user_login=#{channel}"
+      request = HTTPS.new url
 
-      https = Net::HTTP.new(url.host, url.port)
-      https.use_ssl = true
+      request.headers = {
+        "Client-id" => $data["twitchAPI"]["client_id"],
+        "Authorization" => "Bearer #{$data["twitchAPI"]["app_token"]}"
+      }
 
-      request = Net::HTTP::Get.new(url)
-      request["Client-id"] = $data["twitchAPI"]["client_id"]
-      request["Authorization"] = "Bearer #{$data["twitchAPI"]["app_token"]}"
-
-      response = https.request(request)
-      JSON.parse response.body
+      request.get_request
     end
 
-    user = params[:user]
     original_channel = params[:channel]
     parameters = params[:parameters]
 
     if parameters.nil?
+      if original_channel.nil?
+        return "error, no input!"
+      end
       channel = original_channel
     else
       channel = parameters[0]
@@ -45,9 +46,10 @@ $command = {
 
     begin
       obj = get_object(channel)
-      if obj["status"] == 401
-        throw Exception.new "Unauthorized"
+      if obj.code != "200"
+        throw Exception.new "Not 200"
       end
+      obj = JSON.parse obj.body
     rescue
       return "Error! couldn't fetch API"
     end
@@ -55,14 +57,14 @@ $command = {
     obj = obj["data"]
 
     if obj.length == 0
-      "@#{user}, #{channel} is currently offline"
+      "#{channel} is currently offline"
     else
       obj = obj[0]
       game = obj["game_name"]
       views = obj["viewer_count"]
       uptime = format_time_diff(Time.now - Time.parse(obj["started_at"]))
 
-      return "@#{user}, #{channel} has been streaming #{game} for #{uptime} to #{views} viewers "
+      return "#{channel} has been streaming #{game} for #{uptime} to #{views} viewers "
     end
   }
 }
