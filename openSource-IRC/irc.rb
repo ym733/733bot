@@ -22,6 +22,7 @@ class IRC
 
     send_pass "PASS #{@token}"
     send_command "NICK #{@nick}"
+    send_command "CAP REQ :twitch.tv/commands twitch.tv/tags"
     send_command "JOIN ##{@channel}"
     send_privmsg "bot running"
 
