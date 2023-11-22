@@ -22,7 +22,6 @@ PUBLIC COMMANDS:
 | [checksuggest/suggeststat](./commandSuggestCheck.rb) | returns the status of the suggestion with the given suggestion id    |
 | [bot](./commandBot.rb)                               | returns a short description about the bot                            |
 | [help/commands](./commandHelp.rb)                    | brings you here                                                      |
-| [fill](./commandFill.rb)                             | fills the message with the input you give it                         |
 | [pyramid](./commandPyramid.rb)                       | makes a pyramid in chat (only mods can use)                          |
 | [followage](./commandFollowage.rb)                   | API, checks the followage of a given user or a given channel         |
 | [subage](./commandSubage.rb)                         | API, checks the subage of a given user or a given a channel          |
