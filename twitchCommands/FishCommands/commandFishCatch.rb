@@ -1,6 +1,7 @@
 $command = {
   "name" => "fish",
   "isPrivate?" => false,
+  "chainable" => false,
   "alias" => "fishcatch catchfish fc cf",
   "lastUsed" => "FishCatch",
   "coolDown" => 5,
@@ -8,17 +9,15 @@ $command = {
     user_id = params[:tags]["user-id"]
     db = params[:irc].db
 
-    rows = db.get_fisher_info(user_id)
+    data = db.get_fisher_info(user_id)
 
     #check if user exist in DB
-    if rows.ntuples == 0
+    if data.nil?
       return "your twitch id isn't in the database, if you are new please use newuser"
     end
 
-    data = rows[0]
-
-    if (Time.now).to_i - data["last_time_fish"].to_i < 3600
-      time = 3600 - ((Time.now).to_i - data["last_time_fish"].to_i)
+    if (Time.now).to_i - data["last_time_fish"] < 3600
+      time = 3600 - ((Time.now).to_i - data["last_time_fish"])
 
       string = ""
 
@@ -31,7 +30,7 @@ $command = {
       return "you already caught one! Please wait #{string} for another fish to appear"
     end
 
-    points = data["fish_point"].to_i
+    points = data["points"]
 
     #prize decider
     num = rand(0..999)
@@ -62,7 +61,9 @@ $command = {
       prize = "an error has occurred!"
     end
 
-    db.update_fish_points(data["id"], data["twitch_id"], points)
+    Thread.new do
+      db.update_fish_points(user_id, points)
+    end
 
     return prize
   }

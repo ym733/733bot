@@ -13,15 +13,15 @@ _default prefix -> "??", (although might differ depending on the channel)_
 PUBLIC COMMANDS:
 
 | Command                                              | Description                                                          |
-| ---------------------------------------------------- | -------------------------------------------------------------------- |
+|------------------------------------------------------|----------------------------------------------------------------------|
 | [say](./commandSay.rb)                               | Says the input you give                                              |
 | [ping/pong](./commandPing.rb)                        | returns how long the bot has been running for and the twitch latency |
 | [suggest](./commandSuggest.rb)                       | suggest command returns the suggestion id                            |
 | [nasa](./commandNasa.rb)                             | API, returns today's nasa picture                                    |
 | [islive](./commandIsLive.rb)                         | API, returns: game, uptime and number of viewers of a given streamer |
 | [checksuggest/suggeststat](./commandSuggestCheck.rb) | returns the status of the suggestion with the given suggestion id    |
-| [bot](./commandBot.rb)                               | returns a short description about the bot                            |
-| [help/commands](./commandHelp.rb)                    | brings you here                                                      |
+| bot                                                  | returns a short description about the bot                            |
+| help/commands                                        | brings you here                                                      |
 | [pyramid](./commandPyramid.rb)                       | makes a pyramid in chat (only mods can use)                          |
 | [followage](./commandFollowage.rb)                   | API, checks the followage of a given user or a given channel         |
 | [subage](./commandSubage.rb)                         | API, checks the subage of a given user or a given a channel          |
@@ -38,7 +38,7 @@ PUBLIC COMMANDS:
 [FISHING COMMANDS:](./FishCommands/)
 
 | Command                                                         | Description                                                                  |
-| --------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+|-----------------------------------------------------------------|------------------------------------------------------------------------------|
 | [fishcatch/catchfish/fc/cf](./FishCommands/commandFishCatch.rb) | catch a fish to add to your points, has a 1 hour interval between each catch |
 | [newuser](./FishCommands/commandNewUser.rb)                     | if you are a new user, creates a new file for you to start adding points     |
 | [fishpoints/points](./FishCommands/commandFishPoints.rb)        | returns the amounts of points you currently have                             |
@@ -48,7 +48,7 @@ PUBLIC COMMANDS:
 [TEXT EDIT COMMANDS:](./TextEdit/)
 
 | Command                                               | Description                                      |
-| ----------------------------------------------------- | ------------------------------------------------ |
+|-------------------------------------------------------|--------------------------------------------------|
 | [fill](./TextEditCommands/commandFill.rb)             | fills the message with the input you give it     |
 | [reverse](./TextEditCommands/commandReverse.rb)       | reverses the input you give it                   |
 | [shuffle](./TextEditCommands/commandShuffle.rb)       | shuffles the input you give it                   |
@@ -60,7 +60,7 @@ PUBLIC COMMANDS:
 PRIVATE COMMANDS (only bot owner can use):
 
 | Command                        | Description                                                |
-| ------------------------------ | ---------------------------------------------------------- |
+|--------------------------------|------------------------------------------------------------|
 | [quit](./commandQuit.rb)       | shuts down the bot                                         |
 | [ban](./commandBan.rb)         | bans a user from using a certain command or the entire bot |
 | restart                        | reboots/restarts the bot                                   |

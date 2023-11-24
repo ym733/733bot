@@ -1,6 +1,7 @@
 $command = {
   "name" => "text_edit",
   "isPrivate?" => false,
+  "chainable" => true,
   "alias" => "small smol tiny",
   "lastUsed" => "Small",
   "coolDown" => 5,

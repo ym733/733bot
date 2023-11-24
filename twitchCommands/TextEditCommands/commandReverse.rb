@@ -1,6 +1,7 @@
 $command = {
   "name" => "text_edit",
   "isPrivate?" => false,
+  "chainable" => true,
   "alias" => "reverse",
   "lastUsed" => "Reverse",
   "coolDown" => 5,

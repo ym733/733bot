@@ -1,31 +1,42 @@
 $command = {
-    "name" => "leave",
-    "isPrivate?" => true,
-    "alias" => "permaleave permapart",
-    "method" => -> (params) {
-      parameters = params[:parameters]
-      method = params[:irc].method(:leave)
-      threads = params[:irc].threads
-  
+  "name" => "leave",
+  "isPrivate?" => false,
+  "chainable" => false,
+  "alias" => "permaleave leaveperma",
+  "lastUsed" => "PermaLeave",
+  "coolDown" => 5,
+  "method" => -> (params) {
+    parameters = params[:parameters]
+    channel = params[:channel]
+    tags = params[:tags]
+    db = params[:irc].db
+
+
+    if params[:user] == $data["owner_name"]
       if parameters.nil?
-        channel_to_leave = params[:channel]
+        channel_to_leave = channel
       else
-        if parameters[0][0] == '#'
-          channel_to_leave = parameters[0][1..-1].downcase
-        else
-          channel_to_leave = parameters[0].downcase
-        end
+        channel_to_leave = parameters[0]
       end
-  
-      dal = DAL.new
-      dal.leave_channel(channel_to_leave)
-      dal.close
-  
-      method.call channel_to_leave
-      thread = threads[0]
-      threads.pop
-      thread.kill
-      return "leaving #{channel_to_leave}"
-    }
+      unless params[:irc].channel_names.include? channel_to_leave
+        return "Channel not found: #{channel_to_leave}"
+      end
+    else
+      if channel.nil?
+        return "Cant execute command in whispers"
+      end
+      unless tags["broadcaster"]
+        return "Only channel broadcaster can use this command"
+      end
+      channel_to_leave = channel
+    end
+
+    Thread.new do
+      db.leave_channel(channel_to_leave)
+    end
+
+    params[:irc].leave_channel channel_to_leave.downcase
+    return "leaving #{channel_to_leave}..."
+  }
 }
-  
+

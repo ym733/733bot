@@ -1,29 +1,43 @@
 $command = {
-    "name" => "join",
-    "isPrivate?" => true,
-    "alias" => "permajoin joinperma",
-    "method" => -> (params) {
-      user = params[:user]
-      parameters = params[:parameters]
-      method = params[:irc].method(:join)
-  
+  "name" => "join",
+  "isPrivate?" => false,
+  "chainable" => false,
+  "alias" => "permajoin joinperma",
+  "lastUsed" => "PermaJoin",
+  "coolDown" => 5,
+  "method" => -> (params) {
+    parameters = params[:parameters]
+    db = params[:irc].db
+
+    if params[:user] == $data["owner_name"]
       if parameters.nil?
-        return "@#{user}, error, no input!"
-      end
-  
-      if parameters[0][0] == '#'
-        channel_to_join = parameters[0][1..-1].downcase
+        return "error, no input!"
+      elsif parameters.length == 1
+        channel_to_join = parameters[0]
+        prefix = $data["default_prefix"]
       else
-        channel_to_join = parameters[0].downcase
+        channel_to_join = parameters[0]
+        prefix = parameters[1..].join(" ")
       end
-  
-      dal = DAL.new
-      dal.join_channel(channel_to_join)
-  
-      dal.close
-  
-      method.call channel_to_join
-      return nil
-    }
+    else
+      if params[:irc].channel_names.include? params[:user]
+        return "error, already joined channel"
+      end
+
+      if parameters.nil?
+        channel_to_join = params[:user]
+        prefix = $data["default_prefix"]
+      else
+        channel_to_join = params[:user]
+        prefix = parameters.join(" ")
+      end
+    end
+
+    Thread.new do
+      db.join_channel channel_to_join.downcase, prefix
+    end
+
+    params[:irc].join channel_to_join.downcase, prefix
+    return nil
   }
-  
+}

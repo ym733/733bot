@@ -20,18 +20,6 @@ $command = {
       formatted_time_diff.join(', ')
     end
 
-    def get_object(channel)
-      url = "https://api.twitch.tv/helix/streams?user_login=#{channel}"
-      request = HTTPS.new url
-
-      request.headers = {
-        "Client-id" => $data["twitchAPI"]["client_id"],
-        "Authorization" => "Bearer #{$data["twitchAPI"]["app_token"]}"
-      }
-
-      request.get_request
-    end
-
     original_channel = params[:channel]
     parameters = params[:parameters]
 
@@ -45,8 +33,11 @@ $command = {
     end
 
     begin
-      obj = get_object(channel)
+      TwitchAPI.check_app_token
+
+      obj = TwitchAPI.get_stream(channel)
       if obj.code != "200"
+        puts "Not 200".colorize :red
         throw Exception.new "Not 200"
       end
       obj = JSON.parse obj.body
