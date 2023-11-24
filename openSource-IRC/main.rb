@@ -1,13 +1,29 @@
-#Program starts here
-
-system "cls"
 puts "Program running"
 
 require 'json'
 load 'irc.rb'
 
-$data = JSON.parse(File.read('./config.json'))
+config = JSON.parse(File.read('./config.json'))
 
-irc = IRC.new($data["username"], $data["channel"], $data["oauth"])
+irc = IRC.new(config["username"],config["oauth"],config["channels"])
 irc.connect
 
+puts "Connected!"
+
+while irc.running
+  message = irc.read_msg
+
+  if message
+
+    if message["command"]['command'] == 'PRIVMSG'
+      user = message["source"]["nick"]
+      channel = message["command"]["channel"]
+      msg = message["parameters"]
+
+      puts "#{user} in #{channel}: #{msg}"
+
+    end
+  end
+end
+
+irc.quit
