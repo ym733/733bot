@@ -43,3 +43,13 @@ end
 
 irc.quit
 ```
+
+---
+
+# Documentation for config.json
+
+`oauth`: oauth is like your password to the bot, you can get an oauth token from the following website [_Twitch Chat Password Generator_](https://twitchapps.com/tmi/).
+
+`username`: your bot's twitch username exactly as it is written on twitch, this helps with the identity verification.
+
+`channels`: list of channels you want you bot to read messages from.
