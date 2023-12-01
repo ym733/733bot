@@ -76,8 +76,22 @@ class IRC
     end
   end
   alias recv_msg get_msg
-  alias recieve_msg get_msg
+  alias receive_msg get_msg
   alias read_msg get_msg
+
+  def get_msg_raw
+    check_running
+
+    ready = IO.select([@socket])
+    ready[0].each do |s|
+      line = s.gets
+
+      return line
+    end
+  end
+  alias recv_msg_raw get_msg_raw
+  alias receive_msg_raw get_msg_raw
+  alias read_msg_raw get_msg_raw
 
   def quit
     check_running
