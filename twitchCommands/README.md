@@ -1,13 +1,5 @@
 # 733bot Commands
 
-_not all commmds are open-source for various reasons_
-
-_contributions to individual commands are welcome_
-
-_some tools used here are not yet open-source such as IRC methods and DAL methods_
-
-_default prefix -> "??", (although might differ depending on the channel)_
-
 ---
 
 PUBLIC COMMANDS:
